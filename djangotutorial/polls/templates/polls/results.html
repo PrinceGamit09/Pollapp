@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Results</title>
-  </head>
-  <body>
-    <h1>{{ question.question_text }}</h1>
-    <p>Results not implemented yet.</p>
-  </body>
+</head>
+<body>
+
+<h1>{{ question.question_text }}</h1>
+
+<ul>
+    {% for choice in question.choice_set.all %}
+        <li>{{ choice.choice_text }} — {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'detail' question.id %}">Vote again?</a>
+<br>
+<a href="{% url 'index' %}">Back to polls</a>
+
+</body>
 </html>
